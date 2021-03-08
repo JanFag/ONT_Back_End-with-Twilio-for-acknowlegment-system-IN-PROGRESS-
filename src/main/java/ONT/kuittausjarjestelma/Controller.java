@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-//import com.twilio.twiml.Body;
-//import com.twilio.twiml.Message;
 import com.twilio.twiml.MessagingResponse;
 
 import java.io.IOException;
@@ -39,16 +36,6 @@ public class Controller {
 	private HttpServletResponse response;
 	
 	
-	/*@Autowired //tells that we want to use injected Service 
-	public Controller(Service service) {
-		this.service = service;
-	} 
-	
-	@Autowired
-	public Controller(TwilioServlet twilioServlet) {
-		this.twilioServlet = twilioServlet;
-	} */
-	
 	
 	@RequestMapping(value = "api/v1/sms", method = RequestMethod.POST)
 	public void sendSms(@Valid @RequestBody SmsRequest smsRequest) {
@@ -58,7 +45,7 @@ public class Controller {
 	// ...
 	@RequestMapping(value = "/replyMessage", method = RequestMethod.POST)
 	public void replyMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		LOGGER.info("THIS IS IT. request:" + request + ". response: "+ response.getCharacterEncoding());
+		LOGGER.info("THIS IS THE REQUEST. request:" + request + ". response: "+ response.getCharacterEncoding());
 		twilioServlet.service(request, response);
 	  
 	}
